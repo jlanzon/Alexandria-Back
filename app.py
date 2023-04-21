@@ -16,7 +16,7 @@ app.run(host='0.0.0.0', port=port)
 CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return "Welcome to the Alexandria Back-End"
 

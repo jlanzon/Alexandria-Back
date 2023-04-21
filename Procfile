@@ -1,1 +1,1 @@
-web: python app:app --timeout 120
+web: python app.py
