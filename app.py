@@ -12,7 +12,7 @@ from pdf_indexer import index_pdf
 
 app = Flask(__name__)
 port = int(os.environ.get("PORT", 5000))
-CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
+CORS(app)
 
 
 @app.route("/")
