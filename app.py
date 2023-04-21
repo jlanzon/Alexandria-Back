@@ -113,5 +113,9 @@ def search_api():
     results = search(index, query)
     return jsonify(results)
 
+@app.route('/')
+def home():
+    return "Welcome to the Alexandria Back-End"
+
 if __name__ == "__main__":
     app.run()
