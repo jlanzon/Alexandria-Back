@@ -76,34 +76,8 @@ def upload_file():
 
     try:
         if "url" in request.json:
-            url = request.json["url"]
-            if url.lower().endswith(".pdf"):
-                response = requests.get(url)
-                if response.status_code == 200:
-                    file_name = url.split("/")[-1]
-                    file_path = os.path.join(UPLOAD_FOLDER, file_name)
-                    with open(file_path, "wb") as f:
-                        f.write(response.content)
-                    file_hash = compute_file_hash(file_path)
-                    existing_files = [f for f in os.listdir(UPLOAD_FOLDER) if compute_file_hash(os.path.join(UPLOAD_FOLDER, f)) == file_hash]
-                    if len(existing_files) > 1:
-                        os.remove(file_path)
-                        return jsonify({"status": "error", "message": "File already exists in the database."})
-                    else:
-                        text = scrape_pdf(file_path)
-                    index_file_path = os.path.join(INDEX_FOLDER, f"{file_name}.pdf")
-                    file_name = file.filename
-                    add_document_to_index(index, file_name, text, file_hash)
-
-                    # Can delete after use to save space
-                    # os.remove(temp_index_file_path)
-                    index_pdf(text, index_file_path)
-                    return jsonify({"status": "success", "message": "File indexed."})
-                
-                else:
-                    return jsonify({"status": "error", "message": "Failed to download the file from the provided URL."})
-            else:
-                return jsonify({"status": "error", "message": "Invalid URL. Please provide a direct link to a PDF file."})
+            return
+            ("this is not supported yet")
         else:
             return jsonify({"status": "error", "message": "No file or URL provided."})
     except Exception as e:
@@ -121,4 +95,6 @@ def search_api():
 
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+

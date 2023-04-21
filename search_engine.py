@@ -18,7 +18,7 @@ def create_index(index_dir, schema):
 
 def add_document_to_index(index, file_name, text, file_hash):
     with index.writer() as writer:
-        writer.add_document(id=doc_id, content=content)
+        writer.add_document(id=file_name, content=text)
 
 _searcher = None
 

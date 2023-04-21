@@ -22,10 +22,10 @@ def scrape_pdf(file_path_or_url):
 
     if pdf_file:
         try:
-            pdf_reader = PyPDF2.PdfReader(pdf_file)
+            pdf_reader = PyPDF2.PdfFileReader(pdf_file)
             for page_num in range(len(pdf_reader.pages)):
                 page = pdf_reader.pages[page_num]
-                text += page.extract_text()
+                text += page.extractText()
         except Exception as e:
             print(f"Error reading PDF: {e}")
         finally:
