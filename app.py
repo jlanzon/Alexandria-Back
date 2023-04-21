@@ -13,6 +13,11 @@ from pdf_indexer import index_pdf
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"], supports_credentials=True)
 
+
+@app.route('/')
+def home():
+    return "Welcome to the Alexandria Back-End"
+
 UPLOAD_FOLDER = "uploaded_files"
 INDEX_FOLDER = "index_files"
 
@@ -113,9 +118,6 @@ def search_api():
     results = search(index, query)
     return jsonify(results)
 
-@app.route('/')
-def home():
-    return "Welcome to the Alexandria Back-End"
 
 if __name__ == "__main__":
     app.run()
